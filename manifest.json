@@ -1,0 +1,7 @@
+{
+  "manifest_version": 3,
+  "name": "Atlassian Graphql",
+  "version": "0.1.0",
+  "description": "Detect Atlassian GraphQL requests and display HTTP and GraphQL details inside DevTools.",
+  "devtools_page": "devtools.html"
+}

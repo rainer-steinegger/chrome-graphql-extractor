@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atlassian Graphql</title>
+    <link rel="stylesheet" href="panel.css" />
+  </head>
+  <body>
+    <header class="toolbar">
+      <div class="title-wrap">
+        <h1>Atlassian Graphql</h1>
+        <p id="status">Listening for network traffic...</p>
+      </div>
+      <div class="controls">
+        <label>
+          <span>Filter</span>
+          <input id="filter" type="search" placeholder="operation, url, method" />
+        </label>
+        <label class="checkbox">
+          <input id="only-errors" type="checkbox" />
+          <span>Only errors</span>
+        </label>
+        <button id="clear" type="button">Clear</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="list-panel">
+        <ul id="request-list"></ul>
+      </section>
+      <section class="detail-panel">
+        <h2 id="detail-title">No request selected</h2>
+        <div id="detail-content" class="empty">GraphQL requests will appear here.</div>
+      </section>
+    </main>
+
+    <template id="request-item-template">
+      <li class="request-item" role="button" tabindex="0">
+        <div class="row top">
+          <span class="status"></span>
+          <span class="method"></span>
+          <span class="operation"></span>
+        </div>
+        <div class="row bottom">
+          <span class="url"></span>
+          <span class="duration"></span>
+        </div>
+      </li>
+    </template>
+
+    <script src="panel.js"></script>
+  </body>
+</html>
