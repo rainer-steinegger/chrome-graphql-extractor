@@ -3,6 +3,7 @@ const state = {
   selectedId: null,
   filterText: "",
   onlyErrors: false,
+  invertOrder: false,
 };
 
 const requestList = document.getElementById("request-list");
@@ -11,6 +12,7 @@ const detailContent = document.getElementById("detail-content");
 const statusLabel = document.getElementById("status");
 const filterInput = document.getElementById("filter");
 const onlyErrorsInput = document.getElementById("only-errors");
+const invertOrderInput = document.getElementById("invert-order");
 const clearButton = document.getElementById("clear");
 const itemTemplate = document.getElementById("request-item-template");
 
@@ -940,6 +942,15 @@ function filterEntries(entries) {
   });
 }
 
+function getVisibleEntries() {
+  const filtered = filterEntries(state.entries);
+  if (!state.invertOrder) {
+    return filtered;
+  }
+
+  return [...filtered].reverse();
+}
+
 function setSelected(id) {
   state.selectedId = id;
   render();
@@ -1261,7 +1272,7 @@ function renderList(entries) {
 }
 
 function render() {
-  const visibleEntries = filterEntries(state.entries);
+  const visibleEntries = getVisibleEntries();
 
   renderList(visibleEntries);
 
@@ -1326,6 +1337,13 @@ onlyErrorsInput.addEventListener("change", (event) => {
   state.onlyErrors = !!event.target.checked;
   render();
 });
+
+if (invertOrderInput) {
+  invertOrderInput.addEventListener("change", (event) => {
+    state.invertOrder = !!event.target.checked;
+    render();
+  });
+}
 
 clearButton.addEventListener("click", () => {
   state.entries = [];
